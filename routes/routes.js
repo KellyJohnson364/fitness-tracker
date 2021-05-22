@@ -22,15 +22,19 @@ router.post("/api/workout", ({ body }, res) => {
     });
 });
 
-router.put("/api/workout/id", ({ body }, res) => {
-  Workout.update(body)
-    .then(dbWorkout => {
+router.put("/api/workout/id", (req, res) => {
+  Workout.update(req.body, {
+    where: {
+      id: req.params.id,
+    },
+  }).then(dbWorkout => {
       res.json(dbWorkout);
     })
     .catch(err => {
       res.status(400).json(err);
     });
 });
+
 
 
 

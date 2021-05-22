@@ -11,7 +11,10 @@ app.use(express.json());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
+mongoose.connect(
+  process.env.MONGODB_URI || 
+  "mongodb://localhost/FitnessDB", 
+  {
   useNewUrlParser: true,
   useFindAndModify: false,
   useCreateIndex: true,
