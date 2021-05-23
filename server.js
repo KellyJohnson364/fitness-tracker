@@ -22,7 +22,7 @@ mongoose.connect(
 });
 
 // routes
-app.use(require("./routes/"));
+app.use(require("./routes/routes.js"));
 
 app.listen(PORT, () => {
   console.log(`Express/Node.js server running on: http://localhost:${PORT}/ \n`);
