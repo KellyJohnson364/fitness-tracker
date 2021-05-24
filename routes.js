@@ -2,17 +2,32 @@ const router = require("express").Router();
 const path = require("path");
 const Workout = require("./models/workout.js");
 
+const aggregate = Workout.aggregate([
+  {
+    $addFields: {
+      "exercises.totalDuration": { $sum: "$exercises.duration" }
+    }
+  }
+  
+]);
+
+
+
+//route for getting all workouts
 router.get("/api/workouts", (req, res) => {
   Workout.find({})
+    aggregate
     .sort({ date: -1 })
     .then(dbWorkout => {
       res.json(dbWorkout);
+     
     })
     .catch(err => {
       res.status(400).json(err);
     });
 });
 
+// route for creating new workout
 router.post("/api/workouts", ({body}, res) => {
   Workout.create({})
     .then(dbWorkout => {
@@ -23,6 +38,7 @@ router.post("/api/workouts", ({body}, res) => {
     });
 });
 
+// add exercise to existing workout
 router.put("/api/workouts/:id", (req, res) => {
   Workout.updateOne(req.body, {
     where: {
@@ -36,8 +52,11 @@ router.put("/api/workouts/:id", (req, res) => {
     });
 });
 
+//get last 7 workouts
 router.get("/api/workouts/range", (req, res) => {
   Workout.find({})
+    aggregate
+    .sort({ date: -1 })
     .limit(7)
     .then((dbWorkout) => {
       res.json(dbWorkout);
@@ -47,8 +66,10 @@ router.get("/api/workouts/range", (req, res) => {
     });
 });
 
+// routes for rendering exercise and dashboard
   router.get('/exercise', (req, res) => res.sendFile(path.join(__dirname, '/public/exercise.html')));
 
   router.get('/stats', (req, res) => res.sendFile(path.join(__dirname, '/public/stats.html')));
 
 module.exports = router;
+
