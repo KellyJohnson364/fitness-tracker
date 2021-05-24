@@ -13,8 +13,8 @@ router.get("/api/workouts", (req, res) => {
     });
 });
 
-router.post("/api/workouts", ({ body }, res) => {
-  Workout.create(body)
+router.post("/api/workouts", ({body}, res) => {
+  Workout.create({})
     .then(dbWorkout => {
       res.json(dbWorkout);
     })
@@ -36,7 +36,16 @@ router.put("/api/workouts/:id", (req, res) => {
     });
 });
 
-
+router.get("/api/workouts/range", (req, res) => {
+  Workout.find({})
+    .limit(7)
+    .then((dbWorkout) => {
+      res.json(dbWorkout);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
 
   router.get('/exercise', (req, res) => res.sendFile(path.join(__dirname, '/public/exercise.html')));
 
