@@ -19,13 +19,17 @@ let shouldNavigateAway = false;
 
 async function initExercise() {
   let workout;
-
-  if (location.search.split("=")[1] === undefined) {
+      console.log(location.search.split("=")[1])
+  if ((location.search.split("=")[1]) === undefined) {
+    console.log("hey")
     workout = await API.createWorkout()
-    console.log(workout)
+    
   }
-  if (workout) {
+  else if (workout) {
+    console.log("wwwwhy???")
     location.search = "?id=" + workout._id;
+  }else {
+    console.log("kill me now")
   }
 
 }

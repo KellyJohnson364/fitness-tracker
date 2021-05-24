@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
+const routes = require('./routes.js');
 
 const PORT = process.env.PORT || 3000;
 
@@ -22,7 +23,7 @@ mongoose.connect(
 });
 
 // routes
-app.use(require("./routes/routes.js"));
+app.use(routes);
 
 app.listen(PORT, () => {
   console.log(`Express/Node.js server running on: http://localhost:${PORT}/ \n`);
