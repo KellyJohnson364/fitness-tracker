@@ -17,15 +17,25 @@ function calculateTotalWeight(data) {
 
   return totals;
 }
+function calculateTotalDuration(data) {
+  totalD = []
+  data.forEach((workout) => {
+    tDuration = workout.exercises.reduce((acc, curr) => {
+      return acc + curr.totalDuration;
+  }, 0);
+  totalD.push(tDuration)
+    })
+    return totalD;
+  }
 
 
 function populateChart(data) {
-
-   
-  const durations = data.map(({ totalDuration }) => totalDuration);
- 
+ const durations = calculateTotalDuration(data);
+  
+  // const durations = data.map(({ totalDuration }) => totalDuration);
+  console.log(durations)
   const pounds = calculateTotalWeight(data);
-
+  console.log(pounds)
   const line = document.querySelector('#canvas').getContext('2d');
   const bar = document.querySelector('#canvas2').getContext('2d');
 
