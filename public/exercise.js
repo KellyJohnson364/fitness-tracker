@@ -17,19 +17,18 @@ const newWorkout = document.querySelector(".new-workout")
 let workoutType = null;
 let shouldNavigateAway = false;
 
+
 async function initExercise() {
   let workout;
-  
-    console.log(location.search.split("=")[1]);
-  if (location.search.split("=")[1] === 0) {
-    console.log("no previous")
+
+  if (location.search.split("=")[1] === undefined) {
     workout = await API.createWorkout()
-    
+    console.log(workout)
   }
   if (workout) {
-    console.log("id assigned ")
     location.search = "?id=" + workout._id;
   }
+
 }
 
 initExercise();
@@ -115,7 +114,7 @@ async function handleFormSubmit(event) {
     workoutData.reps = Number(repsInput.value.trim());
     workoutData.duration = Number(resistanceDurationInput.value.trim());
   }
-
+  console.log(workoutData)
   await API.addExercise(workoutData);
   clearInputs();
   toast.classList.add("success");
@@ -144,7 +143,7 @@ if (workoutTypeSelect) {
 }
 if (completeButton) {
   completeButton.addEventListener("click", function (event) {
-    shouldNavigateAway = true;
+    shouldNavigateAway = false;
     handleFormSubmit(event);
   });
 }
