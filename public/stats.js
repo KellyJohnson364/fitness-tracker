@@ -17,6 +17,7 @@ function calculateTotalWeight(data) {
 function calculateTotalDuration(data) {
  let totalD = []
   data.forEach((workout) => {
+    console.log(workout.exercises)
     const tDuration = workout.exercises.reduce((totalD, duration) => totalD + duration, 0);
   totalD.push(tDuration)
   console.log(totalD)
