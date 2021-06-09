@@ -14,8 +14,7 @@ async function initWorkout() {
       numExercises: lastWorkout.exercises.length,
       ...tallyExercises(lastWorkout.exercises)
     };
-    console.log(totalDuration)
-    console.log(lastWorkout.exercises.totalDuration)
+
     renderWorkoutSummary(workoutSummary);
   } else {
     renderNoWorkoutText()
