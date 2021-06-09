@@ -24,8 +24,10 @@ function calculateTotalDuration(data) {
       return acc + curr.totalDuration;
   }, 0);
   totalD.push(tDuration)
+  console.log(totalD)
     })
     return totalD;
+
   }
 
 
