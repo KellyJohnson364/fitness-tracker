@@ -12,7 +12,8 @@
   - [Questions](#questions)
   - [License](#license)
   ## Installation 
-      No installation is nessisary.  This application has been deployed on Heroku
+      If using a local server, make sure to run MongoDB in the command-line.  In a new command window, run npm install.  The app will run at http://localhost:3001/.   This application has been deployed on Heroku at 
+[https://whispering-gorge-77228.herokuapp.com/](https://whispering-gorge-77228.herokuapp.com/)
   ## Usage 
       The user will be presented on the loading of the page with the information from their last workout if it exists.  They will be given the option of adding additional exercises to this previous workout or to begin a new workout.  Upon choosing, they will then reach the exercise page where they can enter the specifics of new exercises.  They can also view the stats of past workouts on their dashboard page that brings up the complete info from the last 7 workouts.  
 
