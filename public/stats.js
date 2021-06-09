@@ -18,7 +18,7 @@ function calculateTotalDuration(data) {
  let totalD = []
   data.forEach((workout) => {
     const tDuration = workout.exercises.reduce((totalD, duration) => totalD + duration, 0);
-  total.push(tDuration)
+  totalD.push(tDuration)
   console.log(totalD)
     })
     return totalD;
